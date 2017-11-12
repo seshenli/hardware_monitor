@@ -9,4 +9,5 @@ urlpatterns = [
     url(r'^index/$', views.index, name="index"),
     url(r'^user/$', views.user, name="user"),
     url(r'^table/$', views.table, name="table"),
+    url(r'^user-add/$', views.update_user, name="update-user"),
 ]

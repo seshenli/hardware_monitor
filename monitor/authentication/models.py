@@ -12,4 +12,3 @@ class WebUser(models.Model):
         db_table = 'web_user'
         # verbose_name = u'网站用户'
         # verbose_name_plural = u'网站用户'
-

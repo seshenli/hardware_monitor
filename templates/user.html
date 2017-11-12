@@ -121,7 +121,7 @@
                                 <h4 class="title">Edit Profile</h4>
                             </div>
                             <div class="content">
-                                <form>
+                                <form id="user-form" method="post" onclick="return addUser()">
                                     <div class="row">
                                         <div class="col-md-5">
                                             <div class="form-group">
@@ -134,14 +134,14 @@
                                             <div class="form-group">
                                                 <label>Username</label>
                                                 <input type="text" class="form-control border-input"
-                                                       placeholder="Username" value="michael23">
+                                                       placeholder="Username" value="michael23" name="username">
                                             </div>
                                         </div>
                                         <div class="col-md-4">
                                             <div class="form-group">
                                                 <label for="exampleInputEmail1">Email address</label>
                                                 <input type="email" class="form-control border-input"
-                                                       placeholder="Email">
+                                                       placeholder="Email" name="email">
                                             </div>
                                         </div>
                                     </div>
@@ -151,14 +151,14 @@
                                             <div class="form-group">
                                                 <label>First Name</label>
                                                 <input type="text" class="form-control border-input"
-                                                       placeholder="Company" value="Chet">
+                                                       placeholder="Company" value="Chet" name="password">
                                             </div>
                                         </div>
                                         <div class="col-md-6">
                                             <div class="form-group">
                                                 <label>Last Name</label>
                                                 <input type="text" class="form-control border-input"
-                                                       placeholder="Last Name" value="Faker">
+                                                       placeholder="Last Name" value="Faker" name="nickname">
                                             </div>
                                         </div>
                                     </div>
@@ -210,7 +210,7 @@ But that's the difference in our opinions.</textarea>
                                         </div>
                                     </div>
                                     <div class="text-center">
-                                        <button type="submit" class="btn btn-info btn-fill btn-wd">Update Profile
+                                        <button type="button" id="submitUser" class="btn btn-info btn-fill btn-wd">Update Profile
                                         </button>
                                     </div>
                                     <div class="clearfix"></div>
@@ -226,6 +226,25 @@ But that's the difference in our opinions.</textarea>
     <script>
     $(function () {
         $('#user').addClass('active');
-    })
+    });
+
+
+    function addUser() {
+        var url = "/user-add/";
+        $.ajax({
+            url: url,
+            type: 'post',
+            dataType: 'json',
+            data: $("#user-form").serialize(),
+            success: function (data) {
+                if (data.success == true) {
+                    console.log("write success!");
+                } else {
+                    return false;
+                }
+            }
+        });
+        return false;
+    }
     </script>
 {% endblock %}
